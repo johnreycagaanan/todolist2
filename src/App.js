@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import{useState,useEffect} from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import TodoLists from './components/TodoLists'
+import SingleList from './components/SingleList'
 
 function App() {
+const [todoLists, setTodoLists] = useState([])
+useEffect(()=>{
+  const data = JSON.parse(localStorage.getItem('todoLists'))
+  if (data){
+    setTodoLists(data)
+  }
+},[])
+useEffect(()=>{
+  localStorage.setItem('todoLists', JSON.stringify(todoLists))
+},[todoLists])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+         <Router> 
+        <Routes>     
+          <Route path="/" element={<TodoLists todoLists={todoLists}
+          setTodoLists={setTodoLists}/>}/>
+          <Route path="/:id" element={<SingleList/>}/>
+        </Routes>     
+      </Router>
     </div>
   );
 }

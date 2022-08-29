@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css'
 import{useState,useEffect} from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import TodoLists from './components/TodoLists'

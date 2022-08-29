@@ -1,0 +1,97 @@
+.list-container{
+    background-image: url('../images/list-bg.jpg');
+}
+
+.todos-container{
+    /* text-align: center; */
+    margin:auto;
+    background-color: #9adbd5;
+  width:550px;
+  min-height: 650px;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 3px 6px 40px black;
+  margin-bottom: 10px;
+}
+.todos-container>h1{
+    color: black ;
+    text-align: center;
+}
+
+.add-list-form{
+    margin-bottom: 20px;
+}
+
+.task-input{
+    outline: none;
+    font-family: sans-serif;
+    width: 370px;
+    padding: 15px;
+    margin-right: 25px;
+    font-size: 20px;
+    color:black;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 50px;
+  }
+
+  .todo:hover{
+    background-color: aqua;
+  }
+
+  .button-add{
+    /* height:40px; */
+    width: 70px;
+    padding: 15px 15px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #f1af71;
+    cursor: pointer
+  }
+
+  .button-back{
+    margin-top: 50px;
+  }
+
+  .todos{
+    font-family: sans-serif;
+    margin:auto
+  }
+
+  .todo{
+    display:flex;
+    height:70px;
+    padding: 10px 20px;
+    margin: 5px 0;
+  }
+
+  .todo>span{
+    width:370px;
+  }
+
+  .task-input-edit{
+    outline: none;
+    font-family: sans-serif;
+    width: 200px;
+    padding: 15px;
+    margin-right: 25px;
+    font-size: 20px;
+    color:black;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 50px;
+  }
+
+
+
+
+
+
+
+
+input:focus,
+button:focus{
+  outline: none;
+}

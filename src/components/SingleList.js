@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import{v4} from 'uuid'
 import '../css/SingleList.css'
+import {Button} from '@mui/material'
 // import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+// import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import { textAlign } from '@mui/system'
 
 
 
@@ -73,6 +75,10 @@ const confirmEdit = id =>{
     setInputEdit('')
 }
 
+const hoveredIcon = {
+    cursor: 'pointer',
+}
+
   return (
     <div className="list-container">
     <div className="todos-container">
@@ -84,33 +90,37 @@ const confirmEdit = id =>{
             value={input}
             onChange={e=>{setInput(e.target.value)}}>
             </input>
-            <AddCircleOutlineIcon onClick={e=>handleFormSubmit(e)} fontSize='large'/>
+            <Button type="submit"onClick= {e=>handleFormSubmit(e)}variant="contained" disabled={!input}>Add Todo</Button>
         </form>
         <div className="todos">
             {todos.map(todo=>{
                 return(
-                    isEditing && (editRow===todo.id)? <div
+                    isEditing && (editRow===todo.id)? 
+                    <div className="todo"
                     key={todo.id}
                     >
                         <input className="task-input"
                         placeholder={todo.name}
                         value={inputEdit}
                         onChange={e=>setInputEdit(e.target.value)}/>
-                        <ClearIcon fontSize="large" onClick={()=>cancelEdit()}/>
-                        <CheckIcon fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
-                    </div>: <div className="todo" key={todo.id}>
+                        <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
+                        <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
+                    </div>: 
+                    <div className="todo" key={todo.id}>
                         <span className="todo-name">
                             {todo.name}
                         </span>
-                        <EditIcon onClick={()=>editFunction(todo.id)}/>
-                        <DeleteIcon onClick={()=>handleDelete(todo.id)}/>
+                        <span style={{textAlign:'right'}}>
+                        <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
+                        <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
+                        </span>
                 </div>     
                 )
             })}
         </div>
         
          {/* <button className = "button-back" onClick={()=>navigate('/')}>BACK TO HOME</button> */}
-        <ArrowBackIcon onClick={()=>navigate('/')}/>
+        <ArrowBackIcon style={hoveredIcon} onClick={()=>navigate('/')}/>
     </div>
     </div>
   )

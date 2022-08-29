@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
 import{v4} from 'uuid'
 import {useNavigate} from 'react-router-dom'
-import {Button, FormControl,Input,InputLabel,List,ListItem,ListItemText,Typography} from '@mui/material'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import {Button} from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
@@ -55,6 +54,10 @@ const handleOnClick =(id,listName)=>{
     navigate(`/${id}`, {state: {id, listName}})
 }
 
+const hoveredIcon = {
+  cursor: 'pointer',
+}
+
   return (
     <div className="todo-page">
       <div className="todo-lists-container">
@@ -71,57 +74,51 @@ const handleOnClick =(id,listName)=>{
         
   
          </span> */}
+         <form className="add-list-form">
+            <input
+            className="task-input"
+            placeholder="Add to list"
+            value={input}
+            onChange={e=>{setInput(e.target.value)}}>
+            </input>
+            <Button type="submit"onClick= {e=>handleSubmit(e)}variant="contained" disabled={!input}>Add List</Button>
+            {/* <AddCircleOutlineIcon onClick={e=>handleFormSubmit(e)} fontSize='large'/> */}
+        </form>
          
-          <FormControl>
+          {/* <FormControl>
             <InputLabel htmlFor="my-input">Add a List</InputLabel>
             <Input id="my-input" value={input} onChange={e=>{setInput(e.target.value)}}/>
-        </FormControl>
-        <Button onClick= {e=>handleSubmit(e)}variant="contained" disabled={!input}>Add List</Button>
+        </FormControl> */}
+        
         
          <div className="todo-lists">
-         <List>
+         {/* <List> */}
          {todoLists.map(todoList=>{
             return (
               isEditing && (editRow===todoList.id) ? 
-              <ListItem>
-                <FormControl>
-                   {/* <InputLabel htmlFor="my-input">Add a List</InputLabel> */}
-                   <Input placeholder={todoList.listName} onChange={e=>{setInputEdit(e.target.value)}}/>
-                 </FormControl>
-                 <ClearIcon fontSize="large" onClick={()=>cancelEdit()}/>
-                 <CheckIcon fontSize="large" onClick={()=>confirmEdit(todoList.id)}/>
-              </ListItem>
-              // <li
-              // key={todoList.id}>
-              //           <input
-              //           placeholder={todoList.listName}
-              //           className="list-item"
-              //           value={inputEdit}
-              //           onChange={e=>setInputEdit(e.target.value)}/>
-              //           <ClearIcon fontSize="large" onClick={()=>cancelEdit()}/>
-              //           <CheckIcon fontSize="large" onClick={()=>confirmEdit(todoList.id)}/>
-              // </li> 
+              <div className="todoList"
+              key={todoList.id}
+              >
+                  <input className="task-input"
+                  placeholder={todoList.listName}
+                  value={inputEdit}
+                  onChange={e=>setInputEdit(e.target.value)}/>
+                  <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
+                  <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todoList.id)}/>
+              </div>
               :
-              // <li key={todoList.id}>
-              // <span className="list-name" onClick={()=>handleOnClick(todoList.id, todoList.listName)} >
-              // {todoList.listName}
-              // </span>
-              // <EditIcon onClick={()=>editFunction(todoList.id)}/>
-              // <DeleteIcon onClick={()=>handleDelete(todoList.id)}/>
-              // </li>
-                <ListItem>
-                  {/* <ListItemText onClick={()=>handleOnClick(todoList.id, todoList.listName)} primary={todoList.listName} /> */}
-                  <ListItemText
-                       onClick={()=>handleOnClick(todoList.id, todoList.listName)}
-                       disableTypography
-                      primary={<Typography type="body2" style={{ color: 'black'}}>{todoList.listName}</Typography>}
-                      />
-                  <EditIcon onClick={()=>editFunction(todoList.id)}/>
-                  <DeleteIcon onClick={()=>handleDelete(todoList.id)}/>
-                </ListItem>
+              <div className="todoList" key={todoList.id}>
+                        <span style={{float: 'left'}}className="todoList-name" onClick={()=>handleOnClick(todoList.id,todoList.listName)}>
+                            {todoList.listName}
+                        </span>
+                        <span style={{float:'right'}} className="edit-delete-button">
+                        <EditIcon style={hoveredIcon} onClick={()=>editFunction(todoList.id)}/>
+                        <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todoList.id)}/>
+                        </span>
+                </div> 
+
             )
          })}
-                      </List>
                       </div>
         </div>
     </div>

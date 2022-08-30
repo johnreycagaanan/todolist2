@@ -66,6 +66,22 @@
     background-color: red;
   }
 
+.todo-completed{
+    font-size: 2vw;
+    font-weight: bold;
+    display:flex;
+    height:70px;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 20px;
+    color: black;
+    background-color: green;
+  }
+
+.todo-completed>span{
+  width: 370px;
+}
+
 .todo>span{
     width:370px;
   }

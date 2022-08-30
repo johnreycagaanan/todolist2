@@ -8,6 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 
 
@@ -43,6 +45,20 @@ const handleFormSubmit = (e)=>{
     e.preventDefault();
     setTodos([...todos, {id: v4(), name: input, completed: false}]);
     setInput('');
+};
+
+const doneTodo = (id) =>{
+    const editedTodos=todos.map(todo=>{
+        if(todo.id===id){
+            if(todo.completed===false){
+                todo.completed=true;
+            }else{
+                todo.completed=false;
+            }
+        }
+        return todo
+    })
+    setTodos(editedTodos);
 };
 
 const handleDelete = (id) =>{
@@ -95,6 +111,17 @@ const hoveredIcon = {
                 {
                     return(
                         isEditing && (editRow===todo.id) ? 
+                            todo.completed ===true ?
+                            <div className="todo-completed"
+                                 key={todo.id}>
+                               <input 
+                                   className="task-input"
+                                   placeholder={todo.name}
+                                   value={inputEdit}
+                                   onChange={e=>setInputEdit(e.target.value)}/>
+                               <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
+                               <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
+                            </div>:
                         <div className="todo"
                              key={todo.id}>
                                 <input 
@@ -105,17 +132,30 @@ const hoveredIcon = {
                                 <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
                                 <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
                         </div>  :
-
-                        <div className="todo" 
-                             key={todo.id}>
-                            <span className="todo-name">
-                                {todo.name}
-                            </span>
-                            <span style={{textAlign:'right'}}>
-                                <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
-                                <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
-                            </span>
-                        </div>     
+                            todo.completed === true ?
+                                <div className="todo-completed" 
+                                     key={todo.id}>
+                                    <span className="todo-name">
+                                        {todo.name}
+                                    </span>
+                                    <span style={{textAlign:'right'}}>
+                                         <CheckBoxIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>
+                                         <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
+                                         <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
+                                    </span>
+                                </div> :
+                                
+                                <div className="todo" 
+                                     key={todo.id}>
+                                    <span className="todo-name">
+                                        {todo.name}
+                                    </span>
+                                     <span style={{textAlign:'right'}}>
+                                        <CheckBoxOutlineBlankIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>
+                                        <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
+                                        <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
+                                     </span>
+                                </div>     
                         )
                 })}
             </div>

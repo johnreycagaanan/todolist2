@@ -110,52 +110,30 @@ const hoveredIcon = {
                 {todos.map(todo=>
                 {
                     return(
-                        isEditing && (editRow===todo.id) ? 
-                            todo.completed ===true ?
-                            <div className="todo-completed"
+                        isEditing && (editRow===todo.id) ?
+                            <div className={todo.completed===true ? "todo-completed" : "todo"}
                                  key={todo.id}>
-                               <input 
-                                   className="task-input"
-                                   placeholder={todo.name}
-                                   value={inputEdit}
-                                   onChange={e=>setInputEdit(e.target.value)}/>
+                                <input className="task-input"
+                                       placeholder={todo.name}
+                                       value={inputEdit}
+                                       onChange={e=>setInputEdit(e.target.value)}/>
                                <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
                                <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
-                            </div>:
-                        <div className="todo"
-                             key={todo.id}>
-                                <input 
-                                    className="task-input"
-                                    placeholder={todo.name}
-                                    value={inputEdit}
-                                    onChange={e=>setInputEdit(e.target.value)}/>
-                                <ClearIcon style={hoveredIcon} fontSize="large" onClick={()=>cancelEdit()}/>
-                                <CheckIcon style={hoveredIcon} fontSize="large" onClick={()=>confirmEdit(todo.id)}/>
-                        </div>  :
-                            todo.completed === true ?
-                                <div className="todo-completed" 
-                                     key={todo.id}>
+                            </div>
+                                :
+                            <div className={todo.completed===true ? "todo-completed" : "todo" }
+                                 key={todo.id}>
                                     <span className="todo-name">
                                         {todo.name}
                                     </span>
                                     <span style={{textAlign:'right'}}>
-                                         <CheckBoxIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>
+                                        {todo.completed===true ? 
+                                         <CheckBoxIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/> :
+                                         <CheckBoxOutlineBlankIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>}
                                          <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
                                          <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
                                     </span>
-                                </div> :
-                                
-                                <div className="todo" 
-                                     key={todo.id}>
-                                    <span className="todo-name">
-                                        {todo.name}
-                                    </span>
-                                     <span style={{textAlign:'right'}}>
-                                        <CheckBoxOutlineBlankIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>
-                                        <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
-                                        <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
-                                     </span>
-                                </div>     
+                                </div>    
                         )
                 })}
             </div>

@@ -3,7 +3,6 @@
 }
 
 .todos-container{
-    /* text-align: center; */
     margin:auto;
     background-color: #9adbd5;
   width:550px;
@@ -14,7 +13,7 @@
   box-shadow: 3px 6px 40px black;
   margin-bottom: 10px;
 }
-.todos-container>h1{
+  .todos-container>h1{
     color: black ;
     text-align: center;
 }
@@ -36,13 +35,7 @@
     border-radius: 50px;
   }
 
-  /* .todo:hover{
-    background-color: yellow;
-    cursor: pointer;
-  } */
-
-  .button-add{
-    /* height:40px; */
+.button-add{
     width: 70px;
     padding: 15px 15px;
     font-size: 20px;
@@ -52,16 +45,16 @@
     cursor: pointer
   }
 
-  .button-back{
+.button-back{
     margin-top: 50px;
   }
 
-  .todos{
+.todos{
     font-family: sans-serif;
     margin:auto
   }
 
-  .todo{
+.todo{
     font-size: 2vw;
     font-weight: bold;
     display:flex;
@@ -73,11 +66,11 @@
     background-color: red;
   }
 
-  .todo>span{
+.todo>span{
     width:370px;
   }
 
-  .task-input-edit{
+.task-input-edit{
     outline: none;
     font-family: sans-serif;
     width: 200px;
@@ -89,15 +82,6 @@
     border: 1px solid black;
     border-radius: 50px;
   }
-
-/* .todo .edit-delete-button{
-  float:right;
-} */
-
-
-
-
-
 
 input:focus,
 button:focus{

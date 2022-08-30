@@ -52,14 +52,6 @@
   cursor: pointer
 }
 
-/* .list-item{
-  display: flex;
-  margin: 20px 0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  max-height: 30px;
-} */
 
 .button-delete,
 .button-edit{
@@ -79,16 +71,6 @@
 .button-delete{
   color: lightseagreen;
 }
-
-/* .list{
-  width: 220px;
-  background-color: #12343b;
-  border: none;
-  color: #ccc;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 15px;
-} */
 
 input:focus,
 button:focus{

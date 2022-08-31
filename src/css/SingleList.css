@@ -57,8 +57,9 @@
 .todo{
     font-size: 2vw;
     font-weight: bold;
+    /* position:relative; */
     display:flex;
-    height:70px;
+    min-height:70px;
     padding: 10px 20px;
     margin: 5px 0;
     border-radius: 20px;
@@ -70,7 +71,7 @@
     font-size: 2vw;
     font-weight: bold;
     display:flex;
-    height:70px;
+    min-height:70px;
     padding: 10px 20px;
     margin: 5px 0;
     border-radius: 20px;
@@ -78,13 +79,19 @@
     background-color: green;
   }
 
-.todo-completed>span{
-  width: 370px;
-}
-
-.todo>span{
-    width:370px;
+  .todo-name{
+    width: 367px;
   }
+
+/* .todo-completed>span{
+  width: 200px;
+} */
+
+/* .todo>span{
+    width:300px;
+  } */
+
+
 
 .task-input-edit{
     outline: none;

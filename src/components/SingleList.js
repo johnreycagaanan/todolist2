@@ -47,14 +47,10 @@ const handleFormSubmit = (e)=>{
     setInput('');
 };
 
-const doneTodo = (id) =>{
+const toggleCompleted = (id) =>{
     const editedTodos=todos.map(todo=>{
         if(todo.id===id){
-            if(todo.completed===false){
-                todo.completed=true;
-            }else{
-                todo.completed=false;
-            }
+            todo.completed=!todo.completed;
         }
         return todo
     })
@@ -123,13 +119,15 @@ const hoveredIcon = {
                                 :
                             <div className={todo.completed===true ? "todo-completed" : "todo" }
                                  key={todo.id}>
+                                    <span className="checkbox">
+                                    {todo.completed===true ? 
+                                         <CheckBoxIcon style={hoveredIcon} onClick={()=>toggleCompleted(todo.id)}/> :
+                                         <CheckBoxOutlineBlankIcon style={hoveredIcon} onClick={()=>toggleCompleted(todo.id)}/>}
+                                    </span>
                                     <span className="todo-name">
                                         {todo.name}
                                     </span>
-                                    <span style={{textAlign:'right'}}>
-                                        {todo.completed===true ? 
-                                         <CheckBoxIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/> :
-                                         <CheckBoxOutlineBlankIcon style={hoveredIcon} onClick={()=>doneTodo(todo.id, todo.completed)}/>}
+                                    <span className="edit-delete-button" style={{textAlign:'right'}}>
                                          <EditIcon style={hoveredIcon} onClick={()=>editFunction(todo.id)}/>
                                          <DeleteIcon style={hoveredIcon} onClick={()=>handleDelete(todo.id)}/>
                                     </span>

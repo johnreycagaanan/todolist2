@@ -21,7 +21,7 @@
   font-weight: bold;
   display:flex;
   justify-content: space-between;
-  height:70px;
+  min-height:70px;
   padding: 10px 20px;
   margin: 5px 0;
   border-radius: 20px;
